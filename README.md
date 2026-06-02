@@ -70,8 +70,17 @@ connected: `claude mcp list`.
 | **vidiq** (YouTube) | optional (falls back to web search) | https://vidiq.com — connect its MCP per vidiq's setup |
 | **Gmail** | optional (else `outbox/` drafts) | any Gmail MCP server — see [gmail-setup.md](skills/leads-deliver/references/gmail-setup.md) |
 
-**Claude Cowork** — no terminal: add these from the host's **Plugins / Connectors** menu (Firecrawl
-is an official Claude plugin), then authenticate in the UI. Cowork can't run the CLI — use MCP.
+**Claude Cowork** — no terminal, so add MCPs through the UI:
+1. Open **Settings → Connectors / Plugins** (the MCP directory).
+2. Find **Firecrawl** (it's an official Claude plugin) → **Add**, and paste your Firecrawl API key
+   (free from [firecrawl.dev](https://www.firecrawl.dev)) when prompted.
+3. *(optional)* Add a **Gmail** connector → complete the Google sign-in popup — only needed for
+   `/leads-deliver` send mode.
+4. *(optional)* Add the **vidiq** MCP per [vidiq](https://vidiq.com)'s instructions for YouTube
+   research (otherwise it falls back to web search).
+
+Cowork can't run `npx` or the CLI — always use the connector/MCP path above. After adding, the
+skills' preflight verifies each with a tiny test call.
 
 ## Step 1 — Install
 
