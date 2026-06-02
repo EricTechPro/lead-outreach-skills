@@ -50,8 +50,24 @@ Real email is irreversible and outward-facing. Before any send:
    emails** verbatim.
 4. **Get an explicit go** ("send these N?"). Only on a clear yes do you send. If the user says
    "drafts", switch to draft mode instead.
-5. **Send in a controlled pace** (small batches), and **report** what sent, what failed, and write a
-   `sent.log` (timestamp, recipient, subject) next to the spec.
+5. **Send individually, one recipient at a time** — loop the ✅ leads and make **one Gmail tool call
+   per lead** (its own `to` + personalized subject/body). This is **not** a bulk/BCC blast: every
+   email is different, and 1:1 sends are what keep deliverability high. **Report** sent/failed and
+   write a `sent.log` (timestamp, recipient, subject) after each send.
+
+### How the sending loop works
+```
+for each ✅ lead:
+    render the chosen template with THIS lead's words   (plain + HTML parts)
+    call the Gmail tool ONCE  →  to: <this one address>  (MCP send_email / create_draft, or Gmail API)
+    append to sent.log  →  pace before the next
+```
+- **One call per recipient.** No mailing-list/BCC send — that would break personalization and trip
+  spam filters.
+- **Pace it.** Add a short gap between sends; **cap ~25/mailbox/day** (sender-reputation best
+  practice). On hundreds of leads, send up to the daily cap, log the rest as `pending`, and resume
+  next run — never fire them all at once.
+- **Resume-safe.** Check `sent.log` first; skip anyone already sent so a re-run never double-sends.
 
 This gate is required even if the user said "just send" earlier — confirm the *final* count + sample
 once, at send time. (It's one confirmation, not a per-email nag.)
