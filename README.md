@@ -82,6 +82,11 @@ connected: `claude mcp list`.
 Cowork can't run `npx` or the CLI — always use the connector/MCP path above. After adding, the
 skills' preflight verifies each with a tiny test call.
 
+> **Tip — connectors first, then the skill.** You can connect Firecrawl/Gmail/vidiq via
+> **`+` → Connectors → Add connector** *before* installing the skill (**`+` → Add plugins…** or
+> **Skills**). Then `/leads-research` preflights green with zero setup prompts. Order is flexible —
+> the skill installs fine with no connectors and just guides you if one's missing at run time.
+
 ## Step 1 — Install
 
 You don't clone anything by hand or run a plugin command. Hand the repo URL to your agent and it
