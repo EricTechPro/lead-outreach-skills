@@ -1,0 +1,6 @@
+# The skills are Claude-driven and use the host's tools (Firecrawl MCP, web search,
+# YouTube tools) for research — no heavy Python deps required. CSV reading uses the
+# Python standard library. This file exists so `pip install -r requirements.txt` is a
+# no-op-safe step in install instructions and so future helper scripts have a home.
+
+# (intentionally empty — add deps here only if a future helper script needs them)

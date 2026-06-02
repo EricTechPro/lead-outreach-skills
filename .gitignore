@@ -1,0 +1,17 @@
+# lead working folders (each campaign lives under lead-system/<campaign>/ — not committed)
+/lead-system/
+*.tmp
+
+# secrets / per-machine config (never commit API keys)
+.env
+.env.*
+*.local.json
+
+# python
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# os
+.DS_Store

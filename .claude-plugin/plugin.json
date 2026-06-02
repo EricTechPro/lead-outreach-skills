@@ -1,0 +1,21 @@
+{
+  "name": "lead-outreach",
+  "description": "Turn a CRM CSV of leads into a reviewable outreach spec: plan your offer, research each lead (YouTube + website + web, source-attributed), and send personalized email — all from your coding agent.",
+  "version": "0.1.0",
+  "author": {
+    "name": "EricTechPro"
+  },
+  "homepage": "https://github.com/EricTechPro/lead-outreach-skills",
+  "repository": "https://github.com/EricTechPro/lead-outreach-skills",
+  "license": "MIT",
+  "keywords": [
+    "lead-research",
+    "outreach",
+    "cold-email",
+    "crm",
+    "personalization",
+    "firecrawl",
+    "youtube",
+    "skills"
+  ]
+}

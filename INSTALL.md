@@ -1,0 +1,59 @@
+# Install
+
+Two ways in. Either hand the repo to your agent (recommended) or run the installer yourself.
+
+## A. Let your agent install it (recommended)
+
+Paste this to Claude Code / Cowork:
+
+```
+Install the Lead Outreach skills into this project.
+Repo: https://github.com/EricTechPro/lead-outreach-skills
+Read the repo's docs/install.md and follow it.
+```
+
+The agent clones the repo, runs `install.sh`, and tells you the next step. (Agent-facing details
+live in [docs/install.md](docs/install.md).)
+
+## B. Install it yourself
+
+```bash
+git clone https://github.com/EricTechPro/lead-outreach-skills /tmp/lead-outreach-skills
+bash /tmp/lead-outreach-skills/install.sh "$PWD"      # this project
+# or
+bash /tmp/lead-outreach-skills/install.sh --global    # all projects (~/.claude)
+```
+
+This installs three skills (`.claude/skills/`), three slash commands (`.claude/commands/`), and the
+example templates (`_templates/`). The skills are self-contained — they work in an empty project.
+
+## Connect the research engine
+
+The skills drive tools the host already provides; there's no NotebookLM dependency and no daily cap.
+
+1. **Firecrawl** (websites + footprint) — free key at https://www.firecrawl.dev:
+   ```bash
+   echo 'export FIRECRAWL_API_KEY="fc-YOUR-KEY"' >> ~/.zshrc && source ~/.zshrc
+   ```
+   If the host uses a Firecrawl **MCP** server, it reads this env var on launch — **restart the host**
+   after setting the key. (Keep the key out of git — it lives in your shell rc.)
+
+2. **YouTube** (channels) — make sure the host has YouTube tooling (vidiq MCP, or a YouTube Data /
+   transcript tool). Without it, the YouTube branch falls back to web search.
+
+3. **Gmail** — only for `/leads-deliver` *send* mode. See
+   [`skills/leads-deliver/references/gmail-setup.md`](skills/leads-deliver/references/gmail-setup.md):
+   MCP (best), CLI/API, or the zero-setup `outbox/` folder. `/leads-deliver` works with no Gmail at
+   all — it just writes drafts you can paste.
+
+## Verify
+
+In your host:
+```
+/leads-plan
+```
+If it responds asking for your context/offer, you're installed. Then:
+```
+/leads-research ./_templates/leads.example.csv
+```
+runs the engine over the sample leads.
