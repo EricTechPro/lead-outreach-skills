@@ -47,6 +47,9 @@ from a random video ending up in a pitch as if it were real.)
 | **YouTube tooling** (e.g. vidiq MCP) | channel research — falls back to web search if absent |
 | *(optional)* **Gmail** — MCP / CLI | only for `/leads-deliver` *send* mode; otherwise it writes draft files |
 
+**Exact setup for each → [docs/PREREQUISITES.md](docs/PREREQUISITES.md)** (Firecrawl, YouTube/vidiq, Gmail —
+step by step, per host). `/leads-research` preflight-tests these and points you there if one isn't working.
+
 ## Step 1 — Install
 
 You don't clone anything by hand or run a plugin command. Hand the repo URL to your agent and it

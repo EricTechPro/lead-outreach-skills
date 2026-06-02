@@ -21,6 +21,19 @@ email is irreversible, it always confirms the count and shows a sample before se
 - A mode: **send** (Gmail) or **drafts** (write an `outbox/` folder). If unsure, default to **drafts**
   and ask.
 
+## Step 1 — Style & format (decide once, apply to all)
+Read `references/email-style.md`. Before rendering, settle *how* the emails look:
+1. **Resolve the style set** — read `campaign.md`'s **Delivery style** (if `leads-plan` wrote one) +
+   `BRAND.md` for font/accent/signature. If neither defines it, **propose** a style set from the
+   campaign goal and ask the user to confirm/adjust.
+2. **Pick the format** — Plain text (default for cold outreach) / Light HTML / Branded HTML. If the
+   user asks for HTML on a *cold* list, note the deliverability tradeoff (Promotions tab, spam
+   filters, "marketing" feel) and recommend plain or light — let them choose.
+3. **Render one sample** — take the first ✅ lead and show the email in the chosen format (plain text
+   verbatim, or the HTML plus how it renders). Confirm or tweak before doing the rest.
+4. Apply the **same** style set to every ✅ lead; personalization stays in the words, not the
+   decoration. For HTML, send `multipart/alternative` (plain + HTML) so any client gets a clean read.
+
 ## The send gate (mandatory — never skip)
 Real email is irreversible and outward-facing. Before any send:
 1. **Select only `✅` leads.** Skip `🟡`/`❌`/`⚠️` unless the user explicitly includes them.

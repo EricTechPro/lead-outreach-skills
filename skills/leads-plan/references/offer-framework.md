@@ -51,7 +51,15 @@ Outreach is not only selling. The goal shapes the whole message:
 - **Goal (one win):** <Sell | Partner | Network | Guest swap | Hire | Reach out>
 - **The angle (one line every message bends toward):** <the through-line>
 - **The ask (lowest-effort next step):** <e.g. "worth a 15-min call?">
+
+## Delivery style (optional — leads-deliver proposes one if omitted)
+- **Format:** Plain text (default for cold) | Light HTML | Branded HTML
+- **Voice/sign-off:** <e.g. "Best, Eric">  ·  **Accent (HTML only):** <#hex>
+- **Signature:** <name · one line · 1–2 links>
 ```
+
+> Plain text is the recommended default for cold 1:1 outreach (best deliverability + feels personal).
+> Reserve branded HTML for warm/newsletter sends. See `leads-deliver/references/email-style.md`.
 
 ## The verifiability rule (non-negotiable)
 - Numbers and outcomes need a **source URL**. No source → cut it, and say so in one line.

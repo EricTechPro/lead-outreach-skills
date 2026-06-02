@@ -49,5 +49,7 @@ Set up ONE of these, then re-run preflight:
 
 If you're on Cowork with the Firecrawl MCP connected, this script can't see it — that's expected;
 the skill verifies MCP with its own tiny test call.
+
+Full step-by-step setup for every dependency: docs/PREREQUISITES.md
 EOF
 exit 1
