@@ -17,12 +17,22 @@ You are installing the **lead-outreach** skills into the user's current project.
    (copywriting rules are bundled), so they work in an empty project with nothing else installed.
 
 3. **Connect the research engine** (the skills use the host's tools — no NotebookLM needed):
-   - **Firecrawl** (website + footprint research): get a free key at https://www.firecrawl.dev, then
-     ```bash
-     echo 'export FIRECRAWL_API_KEY="fc-YOUR-KEY"' >> ~/.zshrc && source ~/.zshrc
-     ```
-     If the host uses a Firecrawl MCP server, it reads this env var on launch — **restart the host**
-     after setting it.
+   - **Firecrawl** (website + footprint research). The skill detects the access method automatically —
+     **set up whichever fits the host:**
+     - **Claude Code (recommended):** install the official Firecrawl CLI + skill in one command —
+       ```bash
+       npx -y firecrawl-cli@latest init --all --browser
+       ```
+       This installs the `firecrawl` CLI, runs browser auth, and adds Firecrawl's own skill. The
+       `leads-research` skill will call the CLI (`firecrawl scrape … --json`).
+     - **Claude Cowork:** the CLI usually can't run in the sandbox — connect the **Firecrawl MCP**
+       instead (Firecrawl is an official Claude plugin). The skill calls `firecrawl_scrape` /
+       `firecrawl_search`.
+     - **Any shell host (fallback):** just set the key for curl —
+       ```bash
+       echo 'export FIRECRAWL_API_KEY="fc-YOUR-KEY"' >> ~/.zshrc && source ~/.zshrc   # free key at firecrawl.dev
+       ```
+     CLI/MCP read the key on launch — **restart the host** after setting it.
    - **YouTube** (channel research): ensure the host has YouTube tooling (e.g. the vidiq MCP, or a
      YouTube Data / transcript tool). The skill falls back to web search if none is present.
 

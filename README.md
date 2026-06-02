@@ -43,7 +43,7 @@ from a random video ending up in a pitch as if it were real.)
 | Need | Why |
 |---|---|
 | **Claude Code** *or* **Claude Cowork** | the host that runs the three skills |
-| **Firecrawl** — free API key | website + footprint research (`export FIRECRAWL_API_KEY=…`) |
+| **Firecrawl** — MCP, CLI, *or* API key | website + footprint research; skill auto-detects which (MCP on Cowork, CLI/curl on Claude Code) |
 | **YouTube tooling** (e.g. vidiq MCP) | channel research — falls back to web search if absent |
 | *(optional)* **Gmail** — MCP / CLI | only for `/leads-deliver` *send* mode; otherwise it writes draft files |
 

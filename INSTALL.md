@@ -31,12 +31,20 @@ example templates (`_templates/`). The skills are self-contained — they work i
 
 The skills drive tools the host already provides; there's no NotebookLM dependency and no daily cap.
 
-1. **Firecrawl** (websites + footprint) — free key at https://www.firecrawl.dev:
-   ```bash
-   echo 'export FIRECRAWL_API_KEY="fc-YOUR-KEY"' >> ~/.zshrc && source ~/.zshrc
-   ```
-   If the host uses a Firecrawl **MCP** server, it reads this env var on launch — **restart the host**
-   after setting the key. (Keep the key out of git — it lives in your shell rc.)
+1. **Firecrawl** (websites + footprint). The skill auto-detects the access method (MCP → CLI → curl) —
+   set up whichever fits your host:
+   - **Claude Code (recommended):** one command installs the official Firecrawl CLI + skill + auth:
+     ```bash
+     npx -y firecrawl-cli@latest init --all --browser
+     ```
+   - **Claude Cowork:** connect the **Firecrawl MCP** (official Claude plugin) — the sandbox usually
+     can't run the CLI.
+   - **Fallback (any shell):** free key at https://www.firecrawl.dev, then:
+     ```bash
+     echo 'export FIRECRAWL_API_KEY="fc-YOUR-KEY"' >> ~/.zshrc && source ~/.zshrc
+     ```
+   CLI/MCP read the key on launch — **restart the host** after setting it. (Keep the key out of git —
+   it lives in your shell rc, not a committed file.)
 
 2. **YouTube** (channels) — make sure the host has YouTube tooling (vidiq MCP, or a YouTube Data /
    transcript tool). Without it, the YouTube branch falls back to web search.
