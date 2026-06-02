@@ -27,6 +27,27 @@ No NotebookLM dependency, no daily query cap.
    optional extra links. See `_templates/leads.example.csv`. Map columns by header (case-insensitive);
    if a required column is ambiguous, ask once.
 
+## Step 0 — Preflight (verify the engine BEFORE the run)
+Researching hundreds of leads with a broken engine wastes a long run. Before the per-lead loop,
+confirm the tools actually work — and if they don't, guide setup and **re-test until green**. Do not
+start the loop until Firecrawl is verified.
+
+1. **CSV check** — read the leads CSV; confirm it parses and map the columns (name/email/channel/
+   website/links). If a required column is ambiguous or the file is empty/missing, stop and ask.
+2. **Firecrawl check** — detect and test the access method:
+   - **Shell host (Claude Code):** run `bash scripts/preflight.sh`. It detects the CLI or
+     `FIRECRAWL_API_KEY` and runs a real test scrape. Exit 0 = ready; exit 1 = it prints exactly how
+     to fix it (get a key / `firecrawl login` / `npx firecrawl-cli init`).
+   - **MCP host (Cowork):** the script can't see MCP tools, so test directly — make one tiny
+     `firecrawl_scrape` call on `https://example.com`. Success = ready.
+   - **Neither works:** show the user the fix from `references/research-router.md` (Accessing
+     Firecrawl), wait for them to set it up, then **re-test**. Don't proceed on a dead engine.
+3. **YouTube check (only if leads have channels)** — confirm YouTube tooling is present (e.g. a quick
+   `vidiq_channel_stats` on a known handle like `@mkbhd`). If absent, tell the user the YouTube branch
+   will **fall back to web search** (shallower) — let them decide to proceed or wire up vidiq first.
+4. **Report readiness in one line**, e.g. `✓ engine ready — Firecrawl: CLI · YouTube: vidiq · 218 leads mapped`,
+   then start the loop. Note any degraded path (e.g. "no vidiq → YouTube via web search").
+
 ## The research router (read `references/research-router.md`)
 Route by the source type a lead actually has — never one tool for everything:
 

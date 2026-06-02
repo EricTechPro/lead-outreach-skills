@@ -45,6 +45,9 @@ for skill in leads-plan leads-research leads-deliver; do
   fi
 done
 
+# Make any helper scripts executable (e.g. the Firecrawl preflight test).
+chmod +x "$SKILLS_DIR"/leads-research/scripts/*.sh 2>/dev/null || true
+
 # Slash commands: /leads-plan, /leads-research, /leads-deliver.
 for cmd in leads-plan leads-research leads-deliver; do
   if [[ -f "$SRC_DIR/commands/$cmd.md" ]]; then
