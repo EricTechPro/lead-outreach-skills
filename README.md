@@ -50,6 +50,29 @@ from a random video ending up in a pitch as if it were real.)
 **Exact setup for each → [docs/PREREQUISITES.md](docs/PREREQUISITES.md)** (Firecrawl, YouTube/vidiq, Gmail —
 step by step, per host). `/leads-research` preflight-tests these and points you there if one isn't working.
 
+### Setting up the MCPs manually
+
+You only need to do this once. Most are optional (only Firecrawl, or any web tool, is required).
+
+**Claude Code** — add an MCP from the terminal, then restart:
+```bash
+# Firecrawl (website + footprint research) — needs a free key from firecrawl.dev
+claude mcp add firecrawl -- npx -y firecrawl-mcp           # set FIRECRAWL_API_KEY in your shell first
+# Gmail (only for /leads-deliver send mode)
+claude mcp add gmail -- npx -y <gmail-mcp-package>         # then complete its Google OAuth
+```
+Or manage them interactively in-session with **`/mcp`** (list, add, authenticate). To check what's
+connected: `claude mcp list`.
+
+| Tool | Required? | Link |
+|---|---|---|
+| **Firecrawl** | yes (or any web tool) | https://www.firecrawl.dev · [official Claude plugin](https://www.firecrawl.dev/blog/firecrawl-official-claude-plugin) · [CLI](https://github.com/firecrawl/cli) |
+| **vidiq** (YouTube) | optional (falls back to web search) | https://vidiq.com — connect its MCP per vidiq's setup |
+| **Gmail** | optional (else `outbox/` drafts) | any Gmail MCP server — see [gmail-setup.md](skills/leads-deliver/references/gmail-setup.md) |
+
+**Claude Cowork** — no terminal: add these from the host's **Plugins / Connectors** menu (Firecrawl
+is an official Claude plugin), then authenticate in the UI. Cowork can't run the CLI — use MCP.
+
 ## Step 1 — Install
 
 You don't clone anything by hand or run a plugin command. Hand the repo URL to your agent and it
