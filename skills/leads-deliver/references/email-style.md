@@ -4,6 +4,10 @@ The `leads-spec.md` defines *what* each message says. This defines *how it looks
 One style set is chosen per campaign, shown as a rendered sample, confirmed once, and applied to
 every email — so the whole campaign is consistent.
 
+> The five ready-made templates (tiered by deliverability) and the picker flow live in
+> `references/email-templates.md`; a rendered showcase is `_templates/email/gallery.html`. This file
+> covers the underlying typography + deliverability rules those templates follow.
+
 ## Pick the format (default matters for deliverability)
 
 | Format | Use for | Why |

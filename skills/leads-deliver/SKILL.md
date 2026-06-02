@@ -21,21 +21,26 @@ email is irreversible, it always confirms the count and shows a sample before se
 - A mode: **send** (Gmail) or **drafts** (write an `outbox/` folder). If unsure, default to **drafts**
   and ask.
 
-## Step 1 — Style & format (decide once, apply to all)
-Read `references/email-style.md`. Before rendering, settle *how* the emails look:
-1. **Resolve the style set** — read `campaign.md`'s **Delivery style** (if `leads-plan` wrote one) +
-   `BRAND.md` for font/accent/signature. If neither defines it, **propose** a style set from the
-   campaign goal and ask the user to confirm/adjust.
-2. **Pick the format** — Plain text (default for cold outreach) / Light HTML / Branded HTML. If the
-   user asks for HTML on a *cold* list, note the deliverability tradeoff (Promotions tab, spam
-   filters, "marketing" feel) and recommend plain or light — let them choose.
-3. **Render one sample** — take the first ✅ lead and show the email in the chosen format. For HTML,
-   also **write the rendered sample to `lead-system/<campaign>/outbox/_preview.html`** and tell the
-   user to open it in a browser to eyeball fonts/typography/layout before committing. (Works on both
-   hosts — Claude Code can open it locally; Cowork users download the file.) Plain text needs no
-   preview file — show it verbatim. Confirm or tweak before doing the rest.
-4. Apply the **same** style set to every ✅ lead; personalization stays in the words, not the
-   decoration. For HTML, send `multipart/alternative` (plain + HTML) so any client gets a clean read.
+## Step 1 — Pick a template & style (interactive, once, applied to all)
+Read `references/email-templates.md` and `references/email-style.md`. This step is **interactive** —
+the user chooses the look:
+
+1. **Offer the 5 templates** (tiered by deliverability — show this list, or point them at
+   `_templates/email/gallery.html` to see them rendered):
+   - **1 · Plain Personal** ✅ cold (safest) · **2 · Plain + Signature** ✅ cold ·
+     **3 · Light HTML** ✅ cold-ok · **4 · Clean Branded** ⚠️ warm only · **5 · Announcement** ⚠️ bulk only
+   Use `AskUserQuestion` (options 1/2/3 + "show me the gallery"). **Recommend a ✅ template for cold
+   goals** and say why (plain text ≈ +23% opens, dodges spam); if they pick 4/5 for a *cold* list,
+   warn about deliverability and let them decide.
+2. **Resolve the style set** — fill the template's font/accent/signature/sign-off from `campaign.md`'s
+   **Delivery style** (if `leads-plan` wrote one) + `BRAND.md`. Ask only for what's missing.
+3. **Render one sample** — take the first ✅ lead, fill the chosen template, and for any HTML template
+   **write it to `lead-system/<campaign>/outbox/_preview.html`** so the user can open it in a browser
+   and eyeball the real fonts/typography (Claude Code opens locally; Cowork downloads it). Plain text
+   → show verbatim. Confirm or tweak before the rest.
+4. Apply the **same** template + style to every ✅ lead — personalization lives in the *words*, the
+   look is uniform. For any HTML template, send `multipart/alternative` (plain + HTML) so every client
+   gets a clean read, keep **one link max**, and never add images/tracking pixels.
 
 ## The send gate (mandatory — never skip)
 Real email is irreversible and outward-facing. Before any send:

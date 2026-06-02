@@ -66,15 +66,24 @@ Not needed to plan, research, or write drafts. `/leads-deliver` works with **zer
 writing copy-paste-ready files to `outbox/`. Set up Gmail only when you want it to create/send mail
 directly. Full detail in [`skills/leads-deliver/references/gmail-setup.md`](../skills/leads-deliver/references/gmail-setup.md).
 
-### Gmail MCP (recommended — Claude Code & Cowork)
-Connect a Gmail MCP server in your host, e.g.:
+### Claude Code — Gmail MCP (recommended)
+Add a Gmail MCP server from the terminal:
 ```bash
-claude mcp add gmail -- npx -y <gmail-mcp-package>
+claude mcp add gmail -- npx -y <gmail-mcp-package>   # e.g. GongRzhe/Gmail-MCP-Server
 ```
-Authenticate via its one-time Google OAuth (opens a consent screen; tokens stored locally).
-**Restart the host.** Eric Tech's `ops-brain` plugin also provides Gmail capability if installed.
+Authenticate via its one-time Google OAuth (consent screen; tokens stored locally). **Restart the
+host.** Eric Tech's `ops-brain` plugin also provides Gmail capability if installed.
 
-### Gmail API via CLI (terminal hosts without MCP)
+### Claude Cowork — connector vs. send (important nuance)
+- **Native Google Workspace connector** = **drafts + read only**. Claude creates the draft in your
+  Gmail with your approval; **you click send manually**. Safest, but not auto-send.
+- **To actually send from Cowork**, add a **third-party Gmail MCP** (e.g. Composio Gmail, CAMC, or
+  GongRzhe's server) via the host's **Connectors / Plugins** menu, then authenticate in the UI. Those
+  expose a send/draft tool the agent can call. (Note: Cowork's Gmail MCP currently can't attach files
+  to drafts — body/subject/cc/bcc only. We don't attach anyway.)
+- No terminal in Cowork — always use the Connectors/Plugins UI, not `claude mcp add`.
+
+### Gmail API via CLI (Claude Code without MCP)
 Enable the Gmail API in a Google Cloud project, create an OAuth **Desktop** client, run the one-time
 flow for a refresh token (store it in a gitignored local file / env var — never commit it).
 

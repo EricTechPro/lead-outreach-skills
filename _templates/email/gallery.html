@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lead Outreach — Email Template Gallery</title>
+<style>
+  :root { --ink:#1a1a1a; --muted:#6b7280; --line:#e5e7eb; --accent:#2563eb; --bg:#f6f7f9; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; }
+  header { padding:32px 20px 8px; max-width:760px; margin:0 auto; }
+  header h1 { font-size:22px; margin:0 0 6px; }
+  header p { color:var(--muted); font-size:14px; margin:0; line-height:1.5; }
+  .wrap { max-width:760px; margin:0 auto; padding:20px; }
+  .card { background:#fff; border:1px solid var(--line); border-radius:12px; margin:18px 0; overflow:hidden; }
+  .meta { padding:14px 18px; border-bottom:1px solid var(--line); display:flex; flex-wrap:wrap; gap:8px 14px; align-items:baseline; }
+  .meta h2 { font-size:16px; margin:0; }
+  .tag { font-size:12px; font-weight:600; padding:2px 8px; border-radius:999px; }
+  .safe { background:#e7f6ec; color:#16794a; }
+  .warm { background:#fdf0e3; color:#9a5a13; }
+  .meta .spec { color:var(--muted); font-size:12px; width:100%; }
+  .render { padding:22px 24px; }
+  .gmailbar { font-size:12px; color:var(--muted); border-bottom:1px solid var(--line); padding-bottom:10px; margin-bottom:16px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Lead Outreach — email template gallery</h1>
+  <p>Five styles, tiered by deliverability. <strong>For cold 1:1 outreach, pick a ✅ template</strong>
+  (plain or light) — research shows plain text gets ~23% higher opens and dodges spam filters.
+  ⚠️ templates are for <em>warm</em> lists / newsletters only. Sample content is the same in each so
+  you can compare the <em>look</em>, not the words.</p>
+</header>
+<div class="wrap">
+
+  <!-- 1 -->
+  <div class="card">
+    <div class="meta"><h2>1 · Plain Personal</h2><span class="tag safe">✅ cold — safest</span>
+      <span class="spec">font: system · no HTML chrome · one link · no signature block · reads as hand-typed</span></div>
+    <div class="render">
+      <div class="gmailbar">Subject: built a real AI SaaS with Claude Code</div>
+      <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.6;color:#1a1a1a;">
+        Nate — your audience learns to sell AI; mine is the engineers who ship it.<br><br>
+        I built BookZero (live AI bookkeeping app: Gemini OCR → bank matching → QuickBooks) and
+        open-source the Claude Code skills I run the startup on.<br><br>
+        Worth 15 min on a podcast swap?<br><br>
+        Best,<br>Eric
+      </div>
+    </div>
+  </div>
+
+  <!-- 2 -->
+  <div class="card">
+    <div class="meta"><h2>2 · Plain + Signature</h2><span class="tag safe">✅ cold</span>
+      <span class="spec">font: system · plain body + 2-line gray text signature · one link</span></div>
+    <div class="render">
+      <div class="gmailbar">Subject: built a real AI SaaS with Claude Code</div>
+      <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.6;color:#1a1a1a;">
+        Nate — your audience learns to sell AI; mine is the engineers who ship it.<br><br>
+        I built BookZero (live AI bookkeeping app) and open-source the Claude Code skills I run the
+        startup on. Worth 15 min on a podcast swap?<br><br>
+        Best,<br>Eric
+        <div style="font-size:13px;color:#6b7280;margin-top:10px;">Eric Tech · AI products &amp; Claude Code<br>
+          <a href="https://www.youtube.com/@ericwtech" style="color:#1a1a1a;">youtube.com/@ericwtech</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3 -->
+  <div class="card">
+    <div class="meta"><h2>3 · Light HTML</h2><span class="tag safe">✅ cold-ok</span>
+      <span class="spec">font: system · one accent-colored link · thin signature · no images, no color blocks · multipart/alternative</span></div>
+    <div class="render">
+      <div class="gmailbar">Subject: the build-and-sell overlap</div>
+      <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.6;color:#1a1a1a;max-width:600px;">
+        <p style="margin:0 0 14px;">Nate — your audience learns to sell AI; mine is the engineers who ship it.</p>
+        <p style="margin:0 0 14px;">I built BookZero and open-source the Claude Code skills behind it.
+          Worth 15 min on a <a href="https://www.youtube.com/@ericwtech" style="color:#2563eb;">podcast swap</a>?</p>
+        <p style="margin:18px 0 0;">Best,<br>Eric</p>
+        <p style="margin:4px 0 0;font-size:13px;color:#6b7280;">Eric Tech · AI products &amp; Claude Code</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4 -->
+  <div class="card">
+    <div class="meta"><h2>4 · Clean Branded</h2><span class="tag warm">⚠️ warm only</span>
+      <span class="spec">font: Inter (Google) w/ system fallback · thin accent rule · bold name · 1–2 links · still no images</span></div>
+    <div class="render">
+      <div class="gmailbar">Subject: the build-and-sell overlap</div>
+      <div style="font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.65;color:#1a1a1a;max-width:600px;">
+        <p style="margin:0 0 14px;">Hey Nate,</p>
+        <p style="margin:0 0 14px;">Your audience learns to sell AI; mine is the engineers who ship it.
+          I built BookZero and open-source the Claude Code skills behind it.</p>
+        <p style="margin:0 0 18px;">Worth 15 min on a podcast swap?</p>
+        <div style="border-top:2px solid #2563eb;width:40px;margin:18px 0 10px;"></div>
+        <p style="margin:0;font-weight:600;">Eric Tech</p>
+        <p style="margin:2px 0 0;font-size:13px;color:#6b7280;">AI products &amp; Claude Code ·
+          <a href="https://www.youtube.com/@ericwtech" style="color:#2563eb;">YouTube</a> ·
+          <a href="https://www.bookzero.ai" style="color:#2563eb;">BookZero</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5 -->
+  <div class="card">
+    <div class="meta"><h2>5 · Announcement / Newsletter</h2><span class="tag warm">⚠️ warm / bulk only — not for cold</span>
+      <span class="spec">font: Inter · heading + divider + button-style CTA · for opted-in lists; will hurt cold deliverability</span></div>
+    <div class="render">
+      <div class="gmailbar">Subject: New: build &amp; sell with Claude Code</div>
+      <div style="font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.65;color:#1a1a1a;max-width:600px;">
+        <h2 style="font-size:20px;margin:0 0 6px;">Ship AI, don't just sell it</h2>
+        <p style="margin:0 0 14px;color:#6b7280;font-size:14px;">A quick note for builders</p>
+        <hr style="border:none;border-top:1px solid #e5e7eb;margin:0 0 16px;">
+        <p style="margin:0 0 16px;">I open-sourced the Claude Code skills I use to run a real AI SaaS end to end.</p>
+        <a href="https://www.bookzero.ai" style="display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:10px 18px;border-radius:8px;font-size:14px;font-weight:600;">See the skills →</a>
+        <p style="margin:18px 0 0;font-size:13px;color:#6b7280;">Eric Tech · youtube.com/@ericwtech</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

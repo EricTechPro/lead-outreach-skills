@@ -112,10 +112,27 @@ Full details in **[INSTALL.md](INSTALL.md)**.
         → writes leads-spec.md   (one section per lead · ✅/🟡/❌ · drafts · sources)
 
 /leads-deliver ./lead-system/<campaign>/leads-spec.md
-        → sends ✅ leads after a count+sample confirm, or writes outbox/ drafts
+        → pick an email template (5 styles, deliverability-tiered), preview it,
+          then send ✅ leads after a count+sample confirm — or write outbox/ drafts
 ```
 
 See `_templates/` for `leads.example.csv`, `campaign.example.md`, and `leads-spec.example.md`.
+
+### Email templates
+`/leads-deliver` offers **5 templates tiered by deliverability** — open
+[`_templates/email/gallery.html`](_templates/email/gallery.html) to compare them rendered:
+
+| # | Style | Tier | For |
+|---|---|---|---|
+| 1 | Plain Personal | ✅ cold (safest) | first-touch cold |
+| 2 | Plain + Signature | ✅ cold | cold + name/handle line |
+| 3 | Light HTML | ✅ cold-ok | cold + one accent link |
+| 4 | Clean Branded | ⚠️ warm only | replies / warm intros |
+| 5 | Announcement | ⚠️ bulk only | opted-in lists |
+
+Cold outreach should use **1–3** (plain text gets ~23% higher opens and dodges spam filters). HTML
+sends `multipart/alternative`, one link max, no images/tracking. Details:
+[`email-templates.md`](skills/leads-deliver/references/email-templates.md).
 
 ## What gets created
 

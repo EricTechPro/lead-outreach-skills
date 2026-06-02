@@ -19,6 +19,12 @@ stored locally). After connecting, **restart the host** so the tool is available
 Eric Tech's `ops-brain` plugin also provides Gmail sync / email responses — if it's installed, its
 Gmail capability can back this step.
 
+**Cowork caveat (sending vs drafts):** the **native Google Workspace connector creates drafts only —
+it will not auto-send** (the user clicks send). To send programmatically from Cowork, connect a
+**third-party Gmail MCP** (Composio Gmail / CAMC / GongRzhe) via the Connectors/Plugins UI; those
+expose a send tool. If only the native connector is present, run in **draft mode** and tell the user
+to send from Gmail.
+
 ## Option 2 — Gmail API via CLI / OAuth (terminal hosts)
 
 For a CLI host without MCP, use the Gmail API:
