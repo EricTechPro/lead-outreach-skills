@@ -69,7 +69,9 @@ or heavy color blocks for cold sends.
 1. Resolve the style set: read `campaign.md`'s **Delivery style** (if `leads-plan` wrote one) +
    `BRAND.md`; otherwise **propose** one from the campaign goal and ask.
 2. **Render one sample** (the first ✅ lead) in the chosen format — show it to the user (plain text
-   verbatim, or the HTML *and* a note of how it renders). Confirm or adjust.
+   verbatim, or the HTML *and* a note of how it renders). For HTML, also write the sample to
+   `outbox/_preview.html` so the user can open it in a browser and eyeball the real fonts/typography
+   before sending. Confirm or adjust.
 3. Apply the same style set to **every** ✅ lead. For HTML, send `multipart/alternative` (plain-text
    part + HTML part) so clients without HTML still get a clean message.
 4. Keep personalization in the *words* (from the spec), not the decoration — the style is uniform,

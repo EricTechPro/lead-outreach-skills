@@ -12,11 +12,16 @@ Repo: https://github.com/EricTechPro/lead-outreach-skills
 Read the repo's docs/install.md and follow it.
 ```
 
-The agent clones the repo, runs `install.sh`, and tells you the next step. (Agent-facing details
-live in [docs/install.md](docs/install.md).)
+Works on **both Claude Code and Claude Cowork** — the agent picks the right path:
+- **Claude Code** (has a shell): it clones the repo and runs `install.sh`.
+- **Claude Cowork** (sandboxed — no git/npm): it adds the repo as a plugin, or copies the skill +
+  command + template files into the workspace with its file tools. No shell needed.
+
+(Agent-facing detail for both paths lives in [docs/install.md](docs/install.md).)
 
 ## B. Install it yourself
 
+### Claude Code (shell)
 ```bash
 git clone https://github.com/EricTechPro/lead-outreach-skills /tmp/lead-outreach-skills
 bash /tmp/lead-outreach-skills/install.sh "$PWD"      # this project
@@ -24,8 +29,13 @@ bash /tmp/lead-outreach-skills/install.sh "$PWD"      # this project
 bash /tmp/lead-outreach-skills/install.sh --global    # all projects (~/.claude)
 ```
 
-This installs three skills (`.claude/skills/`), three slash commands (`.claude/commands/`), and the
-example templates (`_templates/`). The skills are self-contained — they work in an empty project.
+### Claude Cowork (no shell)
+Add the repo as a **plugin** (from `.claude-plugin/marketplace.json`), or ask the agent: *"copy the
+three lead-outreach skills + commands from EricTechPro/lead-outreach-skills into this workspace's
+`.claude/`."* Cowork can't run `install.sh`/`npx` — that's expected.
+
+Either way you get three skills (`.claude/skills/`), three slash commands (`.claude/commands/`), and
+the example templates (`_templates/`). The skills are self-contained — they work in an empty project.
 
 ## Connect the research engine
 

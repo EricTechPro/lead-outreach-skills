@@ -34,7 +34,10 @@ authenticate. The skill calls `firecrawl_scrape` / `firecrawl_search`.
    ```
 3. **Restart the host** so the MCP/CLI picks it up.
 
-**Test it:** `bash .claude/skills/leads-research/scripts/preflight.sh` → expect `✓ … Engine ready`.
+**Test it:**
+- **Claude Code:** `bash .claude/skills/leads-research/scripts/preflight.sh` → expect `✓ … Engine ready`.
+- **Claude Cowork:** no shell — the `leads-research` preflight tests the **MCP** directly with a tiny
+  `firecrawl_scrape` call on `example.com`. You don't run anything by hand.
 
 ---
 

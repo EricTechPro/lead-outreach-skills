@@ -29,8 +29,11 @@ Read `references/email-style.md`. Before rendering, settle *how* the emails look
 2. **Pick the format** — Plain text (default for cold outreach) / Light HTML / Branded HTML. If the
    user asks for HTML on a *cold* list, note the deliverability tradeoff (Promotions tab, spam
    filters, "marketing" feel) and recommend plain or light — let them choose.
-3. **Render one sample** — take the first ✅ lead and show the email in the chosen format (plain text
-   verbatim, or the HTML plus how it renders). Confirm or tweak before doing the rest.
+3. **Render one sample** — take the first ✅ lead and show the email in the chosen format. For HTML,
+   also **write the rendered sample to `lead-system/<campaign>/outbox/_preview.html`** and tell the
+   user to open it in a browser to eyeball fonts/typography/layout before committing. (Works on both
+   hosts — Claude Code can open it locally; Cowork users download the file.) Plain text needs no
+   preview file — show it verbatim. Confirm or tweak before doing the rest.
 4. Apply the **same** style set to every ✅ lead; personalization stays in the words, not the
    decoration. For HTML, send `multipart/alternative` (plain + HTML) so any client gets a clean read.
 
