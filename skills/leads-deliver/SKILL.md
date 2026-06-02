@@ -25,13 +25,16 @@ email is irreversible, it always confirms the count and shows a sample before se
 Read `references/email-templates.md` and `references/email-style.md`. This step is **interactive** —
 the user chooses the look:
 
-1. **Offer the 5 templates** (tiered by deliverability — show this list, or point them at
-   `_templates/email/gallery.html` to see them rendered):
-   - **1 · Plain Personal** ✅ cold (safest) · **2 · Plain + Signature** ✅ cold ·
-     **3 · Light HTML** ✅ cold-ok · **4 · Clean Branded** ⚠️ warm only · **5 · Announcement** ⚠️ bulk only
-   Use `AskUserQuestion` (options 1/2/3 + "show me the gallery"). **Recommend a ✅ template for cold
-   goals** and say why (plain text ≈ +23% opens, dodges spam); if they pick 4/5 for a *cold* list,
-   warn about deliverability and let them decide.
+1. **Offer the 3 cold-safe templates** (the default picker) — point them at
+   `_templates/email/gallery.html` to see them rendered:
+   - **1 · Plain Personal** ✅ *(default, recommended for cold — highest deliverability/replies)*
+   - **2 · Plain + Signature** ✅ — plain body + a small text signature
+   - **3 · Light HTML** ✅ — system font + one accent link, a touch of polish
+   Use `AskUserQuestion` (options 1/2/3, with 1 first as recommended). If the user hasn't said,
+   **default to #1** for cold goals and say why (plain text ≈ +23% opens, dodges spam).
+   *Warm-only extras (opt-in):* **4 · Clean Branded** and **5 · Announcement** exist for warm lists /
+   newsletters — offer them only if the user explicitly wants HTML branding for a warm audience, and
+   warn they hurt cold deliverability.
 2. **Resolve the style set** — fill the template's font/accent/signature/sign-off from `campaign.md`'s
    **Delivery style** (if `leads-plan` wrote one) + `BRAND.md`. Ask only for what's missing.
 3. **Render one sample** — take the first ✅ lead, fill the chosen template, and for any HTML template
