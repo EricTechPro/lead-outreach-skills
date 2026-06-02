@@ -36,11 +36,14 @@ Pick one:
 **Restart the host** after setting the key. **Test:** `bash .claude/skills/leads-research/scripts/preflight.sh`.
 
 ## 2. YouTube / vidiq — channel research (optional)
-Connect the vidiq MCP (or any YouTube Data / transcript MCP):
+vidiq has a **hosted MCP** — add it as a remote MCP server:
 ```bash
-claude mcp add vidiq -- <vidiq mcp command>           # per vidiq's setup; needs a vidiq account
+claude mcp add --transport http vidiq https://mcp.vidiq.com/mcp     # then authenticate (API key or OAuth)
 ```
-No YouTube tool? The skill falls back to web search (shallower). **Test:** preflight pings `@mkbhd`.
+- Get an **API key** from your vidiq account, or complete the OAuth sign-in on connect.
+- **Read-only** (stats, top videos, competitors, keywords) — it can't change your channel.
+- Requires a vidiq **Max** plan. Any other YouTube Data / transcript MCP works too.
+- No YouTube tool? The skill **falls back to web search** (shallower). **Test:** preflight pings `@mkbhd`.
 
 ## 3. Gmail — only for `/leads-deliver` send mode (optional)
 ```bash
@@ -85,11 +88,18 @@ Firecrawl isn't in the built-in connector list, so add it as a **custom connecto
    send automatically, add a **third-party Gmail connector** instead (Composio / CAMC) via *Add
    custom connector* with that provider's MCP URL. Otherwise `/leads-deliver` runs in draft mode.
 
-## 3. YouTube / vidiq — channel research (optional) → custom connector or skip
-- If vidiq (or another YouTube MCP) gives you a **remote MCP URL**, add it via **Add custom
-  connector** (same steps as Firecrawl: paste URL → Bearer/OAuth → Add → toggle on).
-- If you can't find one, **skip it** — the YouTube branch falls back to web search via Firecrawl
-  (shallower, but works). The preflight readiness line tells you which path is active.
+## 3. YouTube / vidiq — channel research (optional) → custom connector
+vidiq has a hosted MCP, so add it as a **custom connector** (same flow as Firecrawl):
+1. **`+` → Connectors → Add connector → Add custom connector**.
+2. **Server URL:** paste
+   ```
+   https://mcp.vidiq.com/mcp
+   ```
+3. **Auth:** **API key** (from your vidiq account — simplest) or **OAuth** (sign in on connect).
+4. Click **Add**, then toggle **vidiq ON** for the chat.
+5. Notes: **read-only** (stats / top videos / competitors / keywords); requires a vidiq **Max** plan.
+6. Can't / don't want to? **Skip it** — YouTube research falls back to web search (shallower). The
+   preflight readiness line tells you which path is active.
 
 > **Recommended Cowork order:** connect these connectors **first**, then add the skill
 > (**`+` → Add plugins…** or **Skills**). Then `/leads-research` preflights green with no prompts.

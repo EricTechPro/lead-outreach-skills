@@ -12,8 +12,10 @@ coding agent. The original idea was a NotebookLM skill; research showed Notebook
 
 ### 1. Engine: a router over tools you already have — not NotebookLM
 Lead research is two phases: **gather** (find the lead's sources) and **synthesize** (turn them into
-a dossier). NotebookLM only does synthesis, and its free tier caps at **~50 queries/day** — at 2–3
-questions/lead that's ~16–25 leads/day, a wall at hundreds. So:
+a dossier). NotebookLM can now do both (Discover Sources + Deep Research), but its **free tier caps
+at ~50 queries/day** — at 2–3 questions/lead that's ~16–25 leads/day, a wall at hundreds — and it's
+driven through the browser, which is slow and fragile to script for bulk. So we route over tools the
+host already exposes (programmatic, no daily cap):
 
 | Lead has… | Engine | Verified live during design |
 |---|---|---|
