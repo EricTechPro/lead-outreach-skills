@@ -1,82 +1,100 @@
-# Email style & format
+# Email style & format (v3 — peer networking)
 
-The `leads-spec.md` defines *what* each message says. This defines *how it looks* when delivered.
-One style set is chosen per campaign, shown as a rendered sample, confirmed once, and applied to
-every email — so the whole campaign is consistent.
+The `leads-spec.md` defines *what* each message says. This defines *how it looks and reads* when
+delivered. There is **one canonical style** for this campaign type — a plain, personal, creator-to-creator
+note. It is sent as HTML (so bullets/bold/highlight survive an HTML send node) but must read like a
+normal person typed it in Gmail. Not a newsletter.
 
-> The five ready-made templates (tiered by deliverability) and the picker flow live in
-> `references/email-templates.md`; a rendered showcase is `_templates/email/gallery.html`. This file
-> covers the underlying typography + deliverability rules those templates follow.
+> The single fill-in template + worked examples live in `references/email-templates.md`. The three
+> rendered preview artifacts (what the user eyeballs before the send gate) live in
+> `references/preview-pages.md`. This file is the **style contract** those follow.
 
-## Pick the format (default matters for deliverability)
+All concrete values (channel link, WhatsApp, WeChat, subject prefixes, sign-off) come from
+`campaign.md`'s **Delivery style** block — never hardcode them here. Tokens below in `{{double_braces}}`
+are filled from that block.
 
-| Format | Use for | Why |
-|---|---|---|
-| **Plain text** *(default for cold outreach)* | first-touch / cold 1:1 | lands in the inbox (not Promotions), feels personal, zero rendering breakage, best reply rates |
-| **Light HTML** | warm leads, follow-ups | a little typography + a clean signature, still inbox-friendly |
-| **Branded HTML** | newsletters, announcements, warm lists | full brand look — but riskier for cold (spam filters, "marketing" feel) |
+## Format — plain, personal, HTML (NOT a newsletter)
+- **System font stack only:**
+  `-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif`.
+- Body **15px**, line-height **1.6**, color **#222**.
+- **NO** card/table wrapper, **NO** colored rule, **NO** brand accent color, **NO** header/logo image,
+  **NO** tracking pixels.
+- **One link max** — the YouTube channel ({{channel_url}}). Bullets are real `<ul><li>`.
+- Emphasis: **bold** for the ONE strong reason; exactly **one** yellow highlight ({{highlight_hex}},
+  default `#fde047`) on the invite line. Nothing else is colored.
 
-**Recommend plain text (or light HTML) for cold outreach.** Only go branded HTML when the list is
-warm or it's an announcement. Say this to the user when proposing — don't let a pretty template tank
-deliverability on a cold send.
+## The 7-part structure — every email, in this order
+1. **Greeting with their name** — `Hey <FirstName>,`. A brand/team channel → the brand name or the
+   founders' names. Chinese → `<name>你好！`.
+2. **One intro line** — who you are + the channel link + the **named shared niche**. No numbers/stats.
+   e.g. *"I'm {{sender_first}} — I run {{channel_name}} ({{channel_url}}); we're in the same AI-coding
+   lane, so I wanted to reach out creator-to-creator."*
+3. **Exactly 2 bullets** (real `<ul><li>`):
+   - **bullet 1 = reciprocal overlap** — reference a topic/video **they** did and say you've made the
+     same kind of thing ("saw you did X — I've done the same kind of thing").
+   - **bullet 2 = their community / their angle** — from the research (their Skool/Discord, their tool,
+     their format).
+   - **No view counts.**
+4. **The strong reason in bold** — the niche is small and everyone is heads-down on their own track,
+   with barely anywhere creators actually talk to each other.
+5. **The invite in ONE yellow highlight** — you're connecting creators in the niche into a group chat to
+   learn/share. **Join-or-build:** if they already have a room, ask to join; if not, you're
+   building/finding one and will loop them in.
+6. **Welcoming close + one light ask** — *"if you ever want to trade notes or have a question, I'm
+   around. Open to connecting?"*
+7. **Signature** — plain lines (see below).
 
-## The style set (what "styling" means here)
+## Hard rules
+- **Never** mention our own viral/trending videos or **any** view counts (no "243K", no "blew up").
+  Lead with the niche, not numbers. Do not cite "X views" for **anyone** — them or us.
+- **Always reciprocal framing** — "saw you did X — I've made the same kind of thing."
+- **Always name the shared niche explicitly** — AI coding / Claude Code / n8n automation / AI agents,
+  whichever fits the lead.
+- **One link only** (the YouTube channel). No images, no tracking.
 
-Propose a style set from `campaign.md` + `BRAND.md` (or ask if neither defines it). Keep it small:
+## Emphasis markers (authors write these in the draft; the build step converts them)
+| In the draft text | Rendered HTML |
+|---|---|
+| `**bold**` | `<strong>bold</strong>` |
+| `==highlight==` | `<mark style="background:#fde047;padding:0 2px;border-radius:2px;">highlight</mark>` |
 
-```yaml
-format: plain | light-html | branded-html
-font: "system stack"            # see web-safe note below
-type_scale: { body: 15px, line_height: 1.6 }
-accent: "#<brand hex>"          # links / rule — used only in HTML formats
-signature:
-  name: "<sender name>"
-  line: "<one line — title / handle / URL>"
-  links: ["<site>", "<one social>"]   # keep to 1–2; more links = more spam signal
-sign_off: "Best," | "Cheers," | "<custom>"
+Exactly **one** highlight per email (the invite line). Multiple bolds are fine but keep the bold for the
+ONE strong reason.
+
+## Signature (values from campaign.md — placeholders only here)
+**English:**
 ```
-
-## Web-safe typography (HTML formats)
-
-Email clients strip `<head>`/`<style>` and most web fonts. Rules:
-- **Inline every style** (`style="…"` on each element) — no `<style>` blocks, no external CSS.
-- **System font stack** (renders everywhere, looks native):
-  `font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;`
-- A Google Font is *optional* via `@import`-in-`<style>` but most clients ignore it — always set a
-  system fallback so it never breaks. Don't depend on a custom font for legibility.
-- **No external images** for cold sends (they trip spam filters and break when blocked). A text
-  signature beats a logo image.
-- Body **15–16px**, line-height **1.5–1.6**, max width **~600px**, dark gray text (`#1a1a1a`) not pure black.
-
-## Light/branded HTML template (inline CSS, single-column, table-wrapped)
-
-```html
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#ffffff;">
-  <tr><td align="center" style="padding:8px;">
-    <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;">
-      <tr><td style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.6;color:#1a1a1a;">
-        <!-- BODY: the SEND text, one <p> per line, links as <a style="color:{{accent}};"> -->
-        <p style="margin:0 0 14px;">{{line_1}}</p>
-        <p style="margin:0 0 14px;">{{line_2}}</p>
-        <!-- SIGNATURE -->
-        <p style="margin:18px 0 0;">{{sign_off}}<br>{{name}}</p>
-        <p style="margin:4px 0 0;font-size:13px;color:#666;">{{sig_line}} · <a href="{{url}}" style="color:{{accent}};">{{url_label}}</a></p>
-      </td></tr>
-    </table>
-  </td></tr>
-</table>
+— {{sender_first}}
+{{channel_name}} (YouTube) · {{youtube_handle}}
+WhatsApp: {{whatsapp}}
 ```
-Branded HTML adds a thin accent rule and slightly larger sign-off; it does **not** add header images
-or heavy color blocks for cold sends.
+**Chinese:**
+```
+—— {{sender_first}}
+WhatsApp：{{whatsapp}} ｜ 微信 WeChat：{{wechat}} ｜ {{youtube_handle}}
+```
+- **WhatsApp on every email. WeChat only on Chinese emails.** Channel link in the body **and** the
+  signature.
 
-## How leads-deliver applies it
-1. Resolve the style set: read `campaign.md`'s **Delivery style** (if `leads-plan` wrote one) +
-   `BRAND.md`; otherwise **propose** one from the campaign goal and ask.
-2. **Render one sample** (the first ✅ lead) in the chosen format — show it to the user (plain text
-   verbatim, or the HTML *and* a note of how it renders). For HTML, also write the sample to
-   `outbox/_preview.html` so the user can open it in a browser and eyeball the real fonts/typography
-   before sending. Confirm or adjust.
-3. Apply the same style set to **every** ✅ lead. For HTML, send `multipart/alternative` (plain-text
-   part + HTML part) so clients without HTML still get a clean message.
-4. Keep personalization in the *words* (from the spec), not the decoration — the style is uniform,
-   the content is per-lead.
+## Language rule
+Write the **whole** email in natural Chinese if the channel's name/handle contains Chinese characters
+**OR** the research says it's a Chinese-language channel/audience. Otherwise English. In Chinese emails
+the bullets, bold, and highlight are all Chinese too — not a translated English skeleton.
+
+## Subject lines — a peer INTRODUCTION, never the topic
+- A colleague intro, **never** the topic. Topic/keyword subjects (e.g. "Claude Code + n8n") get
+  filtered out — **forbidden**.
+- **Searchable constant prefix + short varied tail**, so the whole campaign is findable in Sent.
+  - English prefix: **{{en_subject_prefix}}** (default `Fellow AI creator`)
+  - Chinese prefix: **{{zh_subject_prefix}}** (default `同行 AI 创作者`)
+- Rotate the tail for variety:
+  - EN: `Fellow AI creator 👋` · `Fellow AI creator — YouTuber to YouTuber 👋` ·
+    `Fellow AI creator — same niche, saying hi 👋` · `Fellow AI creator — builder in your lane 👋`
+  - ZH: `同行 AI 创作者 👋` · `同行 AI 创作者 — 打个招呼 👋` · `同行 AI 创作者 — 交个朋友 👋`
+
+## Why this style (deliverability + reply rate)
+Plain, personal, one-link mail reads as 1:1 human mail, lands in the inbox (not Promotions), and gets
+the highest reply rates for cold creator-to-creator outreach. The HTML send node is only there so
+bullets/bold/the single highlight render — it is **not** a newsletter wrapper. Branded/newsletter
+layouts (header images, color blocks, multi-link footers) hurt cold deliverability and are not used for
+this campaign type.

@@ -65,21 +65,33 @@ Full detail → **[INSTALL.md](INSTALL.md)**.
 
 Examples in **`_templates/`** (`leads.example.csv`, `campaign.example.md`, `leads-spec.example.md`).
 
-## ✉️ Email templates
+## ✉️ Email style (v3 — peer networking)
 
-`/leads-deliver` offers 5 styles, tiered by deliverability — open
-[`_templates/email/gallery.html`](_templates/email/gallery.html) to compare them rendered:
+**One canonical style**, applied to every ✅ email — a plain, personal, *creator-to-creator* note that
+reads like a human typed it in Gmail (sent as HTML so bullets/bold/one highlight render — **not** a
+newsletter). Personalization is in the words, the look is uniform.
 
-| # | Style | Tier |
-|---|---|---|
-| 1 | Plain Personal | ✅ cold *(default)* |
-| 2 | Plain + Signature | ✅ cold |
-| 3 | Light HTML | ✅ cold-ok |
-| 4 | Clean Branded | ⚠️ warm only |
-| 5 | Announcement | ⚠️ bulk only |
+Every email, in order: **greeting → one intro line (who you are + channel + the named shared niche) →
+2 reciprocal bullets → the strong reason in bold → the invite in one ==yellow highlight== (join-or-build
+a creators' group chat) → welcoming close → signature.** Hard rules: **no view counts, never "viral,"
+one link (the channel), always reciprocal, name the niche.** Subjects are a peer intro with a searchable
+constant prefix (`Fellow AI creator` / `同行 AI 创作者`), never the topic. Writes Chinese automatically
+for Chinese channels/audiences. All style + contact values come from `campaign.md`'s **Delivery style**
+block — nothing personal is baked into the skills. Details →
+[`email-style.md`](skills/leads-deliver/references/email-style.md).
 
-Cold outreach uses **1–3** — plain text gets ~23% higher opens and dodges spam filters. Details →
-[`email-templates.md`](skills/leads-deliver/references/email-templates.md).
+Before sending, `/leads-deliver` builds three previews into `outbox/` — `_send-preview.md`,
+`_preview.html` (exactly as it sends), and `_preview-redacted.html` (email/WhatsApp/WeChat blacked out,
+channel link kept) — then asks **how to send**: an automation node (**n8n** "Send a message in Gmail",
+or make.com / Zapier / a custom webhook/MCP — all `To / Subject / Message(HTML)`), a Gmail MCP, the
+Gmail API, or an `/outbox` folder. One 1:1 send per recipient, after the count + sample gate.
+
+## 🗒️ Changelog
+
+- **0.5.0** — Email style v3 (peer-networking: plain/personal HTML, reciprocal bullets, group-chat
+  invite, searchable subject prefix, no view counts; bilingual). `leads-deliver` now builds three
+  previews (full + redacted) before the gate and asks which send transport to use (n8n / make.com /
+  Zapier / MCP / Gmail API / outbox). Adds `scripts/build_previews.py`.
 
 ## 📁 What gets created
 
